@@ -6,6 +6,8 @@
 </head>
 <body>
     <script>
+        const game_rounds = 5
+
         function computer_play(){
             random_num = Math.floor(Math.random()*3)+1;
             switch (true) {
@@ -17,41 +19,74 @@
                     return "scissors"
             }
         }
+
         function game_round(){
 
-           computer_selection = computer_play()
-           console.log("computer selection: " +computer_selection)
-           player_selection = prompt('Enter "rock", "paper" or "scissors": ')
+           let computer_selection = computer_play();
+           let player_selection = prompt('Enter "rock", "paper" or "scissors": ').toLowerCase()
     
            switch (true) {
                case player_selection == computer_selection:
                     return console.log("it's a draw!")
 
                 case (player_selection == "rock" && computer_selection == "paper"):
-                    return lose_round_mess(player_selection,computer_selection)
+                    lose_round_mess(player_selection,computer_selection)
+                    return false
 
                 case (player_selection == "rock" && computer_selection == "scissors"):
-                    return win_round_mess(player_selection,computer_selection)
+                    win_round_mess(player_selection,computer_selection)
+                    return true
                 
                 case (player_selection == "paper" && computer_selection == "rock"):
-                    return win_round_mess(player_selection,computer_selection)
+                    win_round_mess(player_selection,computer_selection)
+                    return true
 
                 case (player_selection == "paper" && computer_selection == "scissors"):
-                    return lose_round_mess(player_selection,computer_selection)
+                    lose_round_mess(player_selection,computer_selection)
+                    return false
 
                 case (player_selection == "scissors" && computer_selection == "rock"):
-                    return lose_round_mess(player_selection,computer_selection)
+                    lose_round_mess(player_selection,computer_selection)
+                    return false
 
                 case (player_selection == "scissors" && computer_selection == "paper"):
-                    return win_round_mess(player_selection,computer_selection)
+                    win_round_mess(player_selection,computer_selection)
+                    return true
            }
         }
 
         function win_round_mess (user_input, cpu_input){
-            return (`You Win! ${user_input} beats ${cpu_input}`)
+            console.log (`You Win! ${user_input} beats ${cpu_input}`)
         }
+
         function lose_round_mess(user_input, cpu_input){
-            return (`You Lose! ${cpu_input} beats ${user_input}`)
+            console.log (`You Lose! ${cpu_input} beats ${user_input}`)
+        }
+
+        function game () {
+            user_victories = 0;
+            pc_victories = 0;
+            round = 1;
+            for (i=0; i<game_rounds; i++){
+                console.log("current round: "+round);
+                console.log(`user: ${user_victories}`);
+                console.log(`pc: ${pc_victories}`);
+
+                round_result = game_round()
+
+                if (round_result == true) {
+                    user_victories += 1
+                }
+
+                else if (round_result == false) {
+                    pc_victories += 1
+                }
+                round++
+            }
+            console.log("Final result");
+            console.log("Total rounds: "+game_rounds)
+            console.log(`user: ${user_victories}`);
+            console.log(`pc: ${pc_victories}`);
         }    
     </script>
 </body>
