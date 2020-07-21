@@ -6,7 +6,17 @@
 </head>
 <body>
     <script>
-        
+        function computer_play(){
+            random_num = Math.floor(Math.random()*3)+1;
+            switch (true) {
+                case random_num == 1:
+                    return "rock"
+                case random_num == 2:
+                    return "paper"
+                case random_num == 3:
+                    return "scissors"
+            }
+        }
     </script>
 </body>
 </html>
