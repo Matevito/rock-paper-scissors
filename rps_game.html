@@ -17,6 +17,42 @@
                     return "scissors"
             }
         }
+        function game_round(){
+
+           computer_selection = computer_play()
+           console.log("computer selection: " +computer_selection)
+           player_selection = prompt('Enter "rock", "paper" or "scissors": ')
+    
+           switch (true) {
+               case player_selection == computer_selection:
+                    return console.log("it's a draw!")
+
+                case (player_selection == "rock" && computer_selection == "paper"):
+                    return lose_round_mess(player_selection,computer_selection)
+
+                case (player_selection == "rock" && computer_selection == "scissors"):
+                    return win_round_mess(player_selection,computer_selection)
+                
+                case (player_selection == "paper" && computer_selection == "rock"):
+                    return win_round_mess(player_selection,computer_selection)
+
+                case (player_selection == "paper" && computer_selection == "scissors"):
+                    return lose_round_mess(player_selection,computer_selection)
+
+                case (player_selection == "scissors" && computer_selection == "rock"):
+                    return lose_round_mess(player_selection,computer_selection)
+
+                case (player_selection == "scissors" && computer_selection == "paper"):
+                    return win_round_mess(player_selection,computer_selection)
+           }
+        }
+
+        function win_round_mess (user_input, cpu_input){
+            return (`You Win! ${user_input} beats ${cpu_input}`)
+        }
+        function lose_round_mess(user_input, cpu_input){
+            return (`You Lose! ${cpu_input} beats ${user_input}`)
+        }    
     </script>
 </body>
 </html>
