@@ -7,7 +7,6 @@
 <body>
     <script>
         const game_rounds = 5
-
         function computer_play(){
             random_num = Math.floor(Math.random()*3)+1;
             switch (true) {
@@ -64,9 +63,9 @@
         }
 
         function game () {
-            user_victories = 0;
-            pc_victories = 0;
-            round = 1;
+            let user_victories = 0;
+            let pc_victories = 0;
+            let round = 1;
             for (i=0; i<game_rounds; i++){
                 console.log("current round: "+round);
                 console.log(`user: ${user_victories}`);
