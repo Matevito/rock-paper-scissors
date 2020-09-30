@@ -1,10 +1,21 @@
+//variables to follow the game through the rounds
 let game_round = 0;
 let player_points = 0;
 let machine_points = 0;
+
+//selector to show the player how the game is being played
+
 const game_message = document.querySelector("#round_message");
 const round_counter = document.querySelector("#round_counter");
 const human_counter =  document.querySelector("#human_counter");
 const machine_counter = document.querySelector("#machine_counter");
+
+const player_rock = document.querySelector("#rock");
+const player_paper = document.querySelector("#paper");
+const player_scissors = document.querySelector("#scissors");
+
+
+//FUNCTIONS...
 
 function computer_play(){
     random_num = Math.floor(Math.random()*3)+1;
@@ -53,25 +64,31 @@ function play_round (player_selection){
     }
 }
 
-const player_rock = document.querySelector("#rock");
-const player_paper = document.querySelector("#paper");
-const player_scissors = document.querySelector("#scissors");
-
 function change_message (round_result){
     game_round ++;
     round_counter.textContent = game_round;
     if (round_result == true) {
         player_points += 1;
         human_counter.textContent = player_points;
+        if (player_points == 5){
+            game_message.textContent = "The human wins!";
+        }
+        
     }
     else if (round_result == false){
         machine_points += 1;
         machine_counter.textContent = machine_points;
+        if (machine_points == 5){
+            game_message.textContent = "The machine wins!";
+        }
+        
     }
     else {
         return
     }
 }
+
+//Events with the buttons.
 
 player_rock.addEventListener("click", function(e){
     let result = play_round("rock");
@@ -87,3 +104,11 @@ player_scissors.addEventListener("click", function(e){
     let result = play_round ("scissors");
     change_message (result);
 })
+
+//todo: stop the game when a palyer has 5 points.
+
+if (player_points == 5 || machine_points == 5){
+    player_rock = "nothing";
+    player_scissors = "nothing";
+    player_paper = "nothing";
+}
